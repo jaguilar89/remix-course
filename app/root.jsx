@@ -32,7 +32,7 @@ export default function App() {
 }
 
 // Deprecated in V2
-export function CatchBoundary() {
+//export function CatchBoundary() {
   //const caughtResponse = useCatch()
   //const message = caughtResponse.data?.message || "Data not found."
 
@@ -43,7 +43,7 @@ export function CatchBoundary() {
     </main>
   )
   */
-}
+//}
 
 export function ErrorBoundary({ error }) {
    return (
