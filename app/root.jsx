@@ -8,9 +8,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-export const links = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-];
+import styles from './styles/main.css';
+import MainNavigation from "./components/MainNavigation";
 
 export default function App() {
   return (
@@ -22,6 +21,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <MainNavigation />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -29,4 +29,49 @@ export default function App() {
       </body>
     </html>
   );
+}
+
+// Deprecated in V2
+export function CatchBoundary() {
+  //const caughtResponse = useCatch()
+  //const message = caughtResponse.data?.message || "Data not found."
+
+  /*
+  return (
+    <main>
+      <p>{message}</p>
+    </main>
+  )
+  */
+}
+
+export function ErrorBoundary({ error }) {
+   return (
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+        <title>An error occurred!</title>
+      </head>
+      <body>
+        <header>
+          <MainNavigation />
+        </header>
+        <main className="error">
+          <h1>An error occurred!</h1>
+          <p>{error.message}</p>
+          <p>
+            Back to <Link to="/">safety</Link>!
+          </p>
+        </main>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
+}
+
+export function links() {
+  return [{rel: 'stylesheet', href: styles}];
 }
